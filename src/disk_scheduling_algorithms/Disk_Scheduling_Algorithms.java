@@ -32,7 +32,7 @@ public class Disk_Scheduling_Algorithms
             System.out.println("1- Read From File");
             System.out.println("2- Read From User");
             System.out.println("3- Exit\n");
-            Menu_Choice = input.nextInt();
+            Menu_Choice = Valid_Input("Invalid Menu Choice, Please Try Again\n");
             switch (Menu_Choice) 
             {
                 case 1:
@@ -62,12 +62,12 @@ public class Disk_Scheduling_Algorithms
     public static void Start_Scan(ArrayList<Integer> Request_Queue)
     {
         System.out.print("Enter The Head Position : ");
-        Initial_State = input.nextInt();
+        Initial_State = Valid_Input("Invalid Initial State, Please Try Again\n");
         System.out.println("");
         System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
-        Boundries = input.nextInt();
+        Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
         System.out.print("\nEnter The Seek Time : ");
-        Seek_Time = input.nextInt();
+        Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
         int Direction = Select_Direction();
         Scheduler = new SCAN(Initial_State,Boundries, Request_Queue,Direction,Seek_Time);
         Result = Scheduler.Schedule();
@@ -86,12 +86,12 @@ public class Disk_Scheduling_Algorithms
     public static void Start_FCFS(ArrayList<Integer> Request_Queue)
     {
         System.out.print("Enter The Head Position : ");
-        Initial_State = input.nextInt();
+        Initial_State = Valid_Input("Invalid Initial State, Please Try Again\n");
         System.out.println("");
         System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
-        Boundries = input.nextInt();
+        Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
         System.out.print("\nEnter The Seek Time : ");
-        Seek_Time = input.nextInt();
+        Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
         Scheduler = new FCFS(Initial_State,Request_Queue,Boundries,Seek_Time);
         Result = Scheduler.Schedule();
         System.out.println("FCFS");
@@ -122,12 +122,12 @@ public class Disk_Scheduling_Algorithms
     public static ArrayList<Integer> Read_From_User(ArrayList<Integer> Request_Queue) throws FileNotFoundException
     {   
         System.out.println("Enter The Track Elements ");
-        System.out.println("To Stop Type (-1) ");
-        int Temp_Element = 0;
-        while(Temp_Element != -1)
+        System.out.println("To Stop Type (0) ");
+        int Temp_Element = -1;
+        while(Temp_Element != 0)
         {
-            Temp_Element = input.nextInt();
-            if(Temp_Element != -1)
+            Temp_Element = Valid_Input("Invalid Request Value, Please Try Again");
+            if(Temp_Element != 0)
             {
                 Request_Queue.add(Temp_Element);
             }
@@ -137,26 +137,30 @@ public class Disk_Scheduling_Algorithms
     
     public static void Show_Algorithms()
     {
-        System.out.println("\nChoose The Algorithm You Want");
-        System.out.println("1- FCFS");
-        System.out.println("2- SCAN");
-        System.out.println("3- Go Back\n");
-        Algorithm_Choice = input.nextInt();
-        switch (Algorithm_Choice) 
+        while(Algorithm_Choice != 3)
         {
-            case 1:
-                Start_FCFS(Request_Queue);
-                break;
-            case 2:
-                Start_Scan(Request_Queue);
-                break;
-            case 3:
-                System.out.println("\n");
-                break;
-            default:
-                System.out.println("Invalid Choice, Please Try Again");
-                break;
+            System.out.println("\nChoose The Algorithm You Want");
+            System.out.println("1- FCFS");
+            System.out.println("2- SCAN");
+            System.out.println("3- Go Back\n");
+            Algorithm_Choice = Valid_Input("Invalid Algorithm Choice, Please Try Again\n");
+            switch (Algorithm_Choice) 
+            {
+                case 1:
+                    Start_FCFS(Request_Queue);
+                    break;
+                case 2:
+                    Start_Scan(Request_Queue);
+                    break;
+                case 3:
+                    System.out.println("\n");
+                    break;
+                default:
+                    System.out.println("Invalid Choice, Please Try Again");
+                    break;
+            }
         }
+
     }
     
     public static int Select_Direction()
@@ -170,7 +174,7 @@ public class Disk_Scheduling_Algorithms
             System.out.println("1- Upper Direction");
             System.out.println("2- Lower Direction");
             System.out.println("3- Exit\n");
-            Choice = input.nextInt();
+            Choice = Valid_Input("Invalid Direction, Please Try Again\n");
             switch (Choice) {
                 case 1:
                     Direction = 0;
@@ -187,5 +191,25 @@ public class Disk_Scheduling_Algorithms
             }
         }
         return Direction;
+    }
+    
+    public static int Valid_Input(String Message)
+    {
+        int x = -1;
+        String Temp = "";
+        
+        while(!Temp.matches("[0-9]+"))
+        {
+            Temp = input.next();
+            if (Temp.matches("[0-9]+")) 
+            {
+                x = Integer.parseInt(Temp);
+            }
+            else
+            {
+                System.out.println(Message);
+            }
+        }
+        return x;
     }
 }
