@@ -1,11 +1,12 @@
 package disk_scheduling_algorithms;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
  * @author xBodda
  */
+
 public abstract class Scheduling 
 {
     public int Initial_State;
@@ -16,7 +17,7 @@ public abstract class Scheduling
     public int Direction = 999;
     public int Seek_Time = 0;
     
-    public abstract ArrayList<Integer> Schedule();
+    public abstract ArrayList <Integer> Schedule();
 
     public Scheduling(int Initial_State, ArrayList<Integer> Request_Queue, int Boundries, int Seek_Time) 
     {

@@ -1,11 +1,12 @@
 package disk_scheduling_algorithms;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
  * @author Celiusty
  */
+
 public class FCFS extends Scheduling{
 
     public FCFS(int Initial_State, ArrayList<Integer> Request_Queue, int Boundries, int Seek_Time) 
@@ -23,9 +24,9 @@ public class FCFS extends Scheduling{
     
     int Node;
     
-    for(int i=0;i<size;i++){
+    for(int Init_1=0;Init_1<size;Init_1++){
         
-        Node = Request_Queue.get(i);
+        Node = Request_Queue.get(Init_1);
         
         distance=Math.abs(Node - Initial_State); 
         count+=distance;

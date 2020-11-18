@@ -1,14 +1,14 @@
 package disk_scheduling_algorithms;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 /**
  *
  * @author xBodda
  */
+
+
 public class Disk_Scheduling_Algorithms 
 {
     public static Scheduling Scheduler;
@@ -22,7 +22,7 @@ public class Disk_Scheduling_Algorithms
     public static int Boundries = 0;
     public static int Seek_Time = 0;
     
-    public static void main(String[] args) throws FileNotFoundException 
+    public static void main(String[] abc) throws FileNotFoundException 
     {
         System.out.println("*****   Disk Scheduling Simulator   *****\n");
         
@@ -72,10 +72,10 @@ public class Disk_Scheduling_Algorithms
         Scheduler = new SCAN(Initial_State,Boundries, Request_Queue,Direction,Seek_Time);
         Result = Scheduler.Schedule();
         System.out.println("SCAN");
-        for (int i = 0; i <  Result.size(); i++) 
+        for (int Init_1 = 0; Init_1 <  Result.size(); Init_1++) 
         {
-            System.out.print( Result.get(i));
-            if (i < Result.size()-1) 
+            System.out.print( Result.get(Init_1));
+            if (Init_1 < Result.size()-1) 
             {
                 System.out.print(" --> ");
             }
@@ -95,10 +95,10 @@ public class Disk_Scheduling_Algorithms
         Scheduler = new FCFS(Initial_State,Request_Queue,Boundries,Seek_Time);
         Result = Scheduler.Schedule();
         System.out.println("FCFS");
-        for (int i = 0; i <  Result.size(); i++) 
+        for (int Init_2 = 0; Init_2 <  Result.size(); Init_2++) 
         {
-            System.out.print( Result.get(i));
-            if (i < Result.size()-1)
+            System.out.print( Result.get(Init_2));
+            if (Init_2 < Result.size()-1)
             {
                 System.out.print(" --> ");
             }

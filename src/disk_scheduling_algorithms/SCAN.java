@@ -1,11 +1,12 @@
 package disk_scheduling_algorithms;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
  * @author xBodda
  */
+
 public class SCAN extends Scheduling
 {
     public SCAN(int Initial_State,int Boundries,ArrayList<Integer> Request_Queue, int Direction, int Seek_Time) 
