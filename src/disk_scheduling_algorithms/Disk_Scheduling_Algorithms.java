@@ -74,7 +74,7 @@ public class Disk_Scheduling_Algorithms
         System.out.println("SCAN");
         for (int Init_1 = 0; Init_1 <  Result.size(); Init_1++) 
         {
-            System.out.print( Result.get(Init_1));
+            System.out.print(Result.get(Init_1));
             if (Init_1 < Result.size()-1) 
             {
                 System.out.print(" --> ");
@@ -175,7 +175,8 @@ public class Disk_Scheduling_Algorithms
             System.out.println("2- Lower Direction");
             System.out.println("3- Exit\n");
             Choice = Valid_Input("Invalid Direction, Please Try Again\n");
-            switch (Choice) {
+            switch (Choice) 
+            {
                 case 1:
                     Direction = 0;
                     break outer;

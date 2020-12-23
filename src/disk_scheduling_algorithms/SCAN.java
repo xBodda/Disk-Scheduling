@@ -6,7 +6,6 @@ import java.util.*;
  *
  * @author xBodda
  */
-
 public class SCAN extends Scheduling
 {
     public SCAN(int Initial_State,int Boundries,ArrayList<Integer> Request_Queue, int Direction, int Seek_Time) 
@@ -47,6 +46,7 @@ public class SCAN extends Scheduling
                 }   break;
                 
             case 1:
+                Request_Queue.add(0);
                 while (Node > 0) 
                 {
                     if (Request_Queue.contains(Node))
