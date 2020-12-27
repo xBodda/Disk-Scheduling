@@ -8,7 +8,6 @@ import java.util.*;
  * @author xBodda
  */
 
-
 public class Disk_Scheduling_Algorithms 
 {
     public static Scheduling Scheduler;
@@ -83,6 +82,53 @@ public class Disk_Scheduling_Algorithms
         System.out.println();
     }
     
+    public static void Start_CSCAN(ArrayList<Integer> Request_Queue)
+    {
+        System.out.print("Enter The Head Position : ");
+        Initial_State = Valid_Input("Invalid Initial State, Please Try Again\n");
+        System.out.println("");
+        System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
+        Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        System.out.print("\nEnter The Seek Time : ");
+        Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
+        int Direction = Select_Direction();
+        Scheduler = new CSCAN(Initial_State, Request_Queue, Boundries, Direction,Seek_Time);
+        Result = Scheduler.Schedule();
+        System.out.println("C-SCAN");
+        for (int Init_1 = 0; Init_1 <  Result.size(); Init_1++) 
+        {
+            System.out.print(Result.get(Init_1));
+            if (Init_1 < Result.size()-1) 
+            {
+                System.out.print(" --> ");
+            }
+        }
+        System.out.println();
+    }
+    
+    public static void Start_SSTF(ArrayList<Integer> Request_Queue)
+    {
+        System.out.print("Enter The Head Position : ");
+        Initial_State = Valid_Input("Invalid Initial State, Please Try Again\n");
+        System.out.println("");
+        System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
+        Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        System.out.print("\nEnter The Seek Time : ");
+        Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
+        Scheduler = new SSTF(Initial_State, Request_Queue,Boundries,Seek_Time);
+        Result = Scheduler.Schedule();
+        System.out.println("SSTF");
+        for (int Init_1 = 0; Init_1 <  Result.size(); Init_1++) 
+        {
+            System.out.print(Result.get(Init_1));
+            if (Init_1 < Result.size()-1) 
+            {
+                System.out.print(" --> ");
+            }
+        }
+        System.out.println();
+    }
+    
     public static void Start_FCFS(ArrayList<Integer> Request_Queue)
     {
         System.out.print("Enter The Head Position : ");
@@ -142,7 +188,9 @@ public class Disk_Scheduling_Algorithms
             System.out.println("\nChoose The Algorithm You Want");
             System.out.println("1- FCFS");
             System.out.println("2- SCAN");
-            System.out.println("3- Go Back\n");
+            System.out.println("3- SSTF");
+            System.out.println("4- CSCAN");
+            System.out.println("5- Go Back\n");
             Algorithm_Choice = Valid_Input("Invalid Algorithm Choice, Please Try Again\n");
             switch (Algorithm_Choice) 
             {
@@ -153,6 +201,11 @@ public class Disk_Scheduling_Algorithms
                     Start_Scan(Request_Queue);
                     break;
                 case 3:
+                    Start_SSTF(Request_Queue);
+                    break;
+                case 4:
+                    Start_CSCAN(Request_Queue);
+                case 5:
                     System.out.println("\n");
                     break;
                 default:
