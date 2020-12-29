@@ -1,5 +1,6 @@
 package disk_scheduling_algorithms;
 
+import static disk_scheduling_algorithms.Disk_Scheduling_Algorithms.Valid_Boundries_Input;
 import java.io.*;
 import java.util.*;
 
@@ -65,6 +66,11 @@ public class Disk_Scheduling_Algorithms
         System.out.println("");
         System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
         Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        while(!Valid_Boundries_Input(Boundries,Request_Queue))
+        {
+            System.out.println("Invalid Boundries Value, Enter Again");
+            Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        }
         System.out.print("\nEnter The Seek Time : ");
         Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
         int Direction = Select_Direction();
@@ -89,6 +95,11 @@ public class Disk_Scheduling_Algorithms
         System.out.println("");
         System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
         Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        while(!Valid_Boundries_Input(Boundries,Request_Queue))
+        {
+            System.out.println("Invalid Boundries Value, Enter Again");
+            Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        }
         System.out.print("\nEnter The Seek Time : ");
         Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
         int Direction = Select_Direction();
@@ -113,6 +124,11 @@ public class Disk_Scheduling_Algorithms
         System.out.println("");
         System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
         Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        while(!Valid_Boundries_Input(Boundries,Request_Queue))
+        {
+            System.out.println("Invalid Boundries Value, Enter Again");
+            Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        }
         System.out.print("\nEnter The Seek Time : ");
         Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
         int Direction = Select_Direction();
@@ -137,6 +153,11 @@ public class Disk_Scheduling_Algorithms
         System.out.println("");
         System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
         Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        while(!Valid_Boundries_Input(Boundries,Request_Queue))
+        {
+            System.out.println("Invalid Boundries Value, Enter Again");
+            Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        }
         System.out.print("\nEnter The Seek Time : ");
         Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
         int Direction = Select_Direction();
@@ -161,6 +182,11 @@ public class Disk_Scheduling_Algorithms
         System.out.println("");
         System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
         Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        while(!Valid_Boundries_Input(Boundries,Request_Queue))
+        {
+            System.out.println("Invalid Boundries Value, Enter Again");
+            Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        }
         System.out.print("\nEnter The Seek Time : ");
         Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
         Scheduler = new SSTF(Initial_State, Request_Queue,Boundries,Seek_Time);
@@ -184,6 +210,11 @@ public class Disk_Scheduling_Algorithms
         System.out.println("");
         System.out.println("Enter The Maximum Bound : (eg:200 , 0->199)");
         Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        while(!Valid_Boundries_Input(Boundries,Request_Queue))
+        {
+            System.out.println("Invalid Boundries Value, Enter Again");
+            Boundries = Valid_Input("Invalid Boundries Value, Please Try Again\n");
+        }
         System.out.print("\nEnter The Seek Time : ");
         Seek_Time = Valid_Input("Invalid Seek Time, Please Try Again\n");
         Scheduler = new FCFS(Initial_State,Request_Queue,Boundries,Seek_Time);
@@ -319,5 +350,29 @@ public class Disk_Scheduling_Algorithms
             }
         }
         return x;
+    }
+    
+    public static boolean Valid_Boundries_Input(int Boundries, ArrayList<Integer>Request_Array)
+    {
+        boolean isLower = false;
+        
+        for (int i = 0; i < Request_Queue.size(); i++) 
+        {
+            if (Boundries < Request_Queue.get(i)) 
+            {
+                isLower = true;
+                break;
+            }
+            else
+            {
+                isLower = false;
+            }
+        }
+        
+        if (isLower) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
